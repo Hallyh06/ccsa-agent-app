@@ -1,0 +1,65 @@
+/* User Registration Page */
+.registration-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+  }
+  
+  .registration-box {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .logo {
+    margin-bottom: 20px;
+  }
+  
+  .logo-img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .register-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #231369;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .register-button:hover {
+    background-color: #3506a4;
+  }
+  
+  .error-message {
+    color: #e74c3c;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
