@@ -91,15 +91,15 @@ const RegisterFarmer = () => {
 
   return (
     <div className="container">
-      <div className="header">
+      <div className="header-page">
         <img src="./cosmologo.png" alt="CCSA Logo" className="logo" />
         <h1 className="page-title">Centre for Climate Smart Agriculture</h1>
       </div>
       <div className="form-container">
-        <h3 className="form-title">New Farmer Registration</h3>
+        <h4 className="form-title" style={{textAlign: 'center', fontStyle: 'normal'}}>New Farmer Registration</h4>
         <form onSubmit={handleSubmit}>
         <div className="section">
-        <h4 className="section-title">Farmer Personal Information</h4>
+        <h4 className="section-title" style={{background: '#231369', padding: '10px', color: 'white'}}>Farmer Personal Information</h4>
           <div className="form-grid">
             <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Full Name" required />
             <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required />
@@ -131,7 +131,7 @@ const RegisterFarmer = () => {
             </div>
 
             <div className="section">
-            <h4 className="section-title">Geospatial Information</h4>
+            <h4 className="section-title" style={{background: '#231369', padding: '10px', color: 'white', marginTop: '30px'}}>Geospatial Information</h4>
             <div className="form-grid">
               <input 
                 type="text" 
