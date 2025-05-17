@@ -130,6 +130,44 @@ const RegisterFarmer = () => {
             </select>
             </div>
 
+
+          <div className="section">
+          <h4 className="section-title" style={{background: '#231369', padding: '10px', color: 'white', marginTop: '30px'}}>Farm Information</h4>
+          <div className="form-grid">
+            <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Full Name" required />
+            <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required />
+            <input type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone Number" required />
+            <input type="text" name="nin" value={formData.nin} onChange={handleChange} placeholder="NIN" required />
+            <select name="state" value={formData.state} onChange={handleChange} required>
+              <option value="">Select State</option>
+              <option value="Kaduna">Kaduna</option>
+              <option value="Abuja">Abuja</option>
+              <option value="Jigawa">Jigawa</option>
+              <option value="Katsina">Katsina</option>
+            </select>
+            <select name="gender" value={formData.gender} onChange={handleChange} required>
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+            <select name="primaryCrop" value={formData.primaryCrop} onChange={handleChange} required>
+              <option value="">Primary Crop</option>
+              <option value="Maize">Maize</option>
+              <option value="Groundnut">Groundnut</option>
+              <option value="Beans">Beans</option>
+            </select>
+            <select name="farmOwnership" value={formData.farmOwnership} onChange={handleChange} required>
+              <option value="">Farm Ownership</option>
+              <option value="Owned">Owned</option>
+              <option value="Rent">Rent</option>
+            </select>
+            </div>
+            </div>
+            
+            
+
+
+
             <div className="section">
             <h4 className="section-title" style={{background: '#231369', padding: '10px', color: 'white', marginTop: '30px'}}>Geospatial Information</h4>
             <div className="form-grid">

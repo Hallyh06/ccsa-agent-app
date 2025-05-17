@@ -26,6 +26,7 @@ const Login = () => {
         <div className="logo">
           <img src="./cosmologo.png" alt="Logo" className="logo-img" />
         </div>
+        <h3 className="page-title" style={{fontSize: '17px'}}>Centre for Climate Smart Agriculture</h3>
         <h2 className="subtitle"  style={{marginTop: 40}}>Farmers Registration System</h2>
         {error && <p className="error-message">{error}</p>}
         <form onSubmit={handleLogin}>
@@ -48,7 +49,7 @@ const Login = () => {
           <button type="submit" className="login-button">Login</button>
         </form>
         <div className="forgot-password">
-          <a href="/ForgetPassword" className="forgot-password-link">Forgot Password?</a>
+          <a href="/ForgetPassword" className="forgot-password-link" style={{textAlign: 'center'}}>Forgot Password?</a>
         </div>
       </div>
     </div>

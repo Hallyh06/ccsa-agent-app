@@ -7,7 +7,7 @@
   
   body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(180deg, #356835, #d1ced8);
+    background: #fff;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -32,7 +32,7 @@
   }
   
   .logo {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
   }
   
   .logo-img {
