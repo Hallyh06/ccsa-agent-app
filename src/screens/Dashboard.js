@@ -184,7 +184,7 @@ const Dashboard = () => {
                       label={({ name, percent }) =>
                         `${name} (${(percent * 100).toFixed(0)}%)`
                       }
-                    >
+                    > 
                       {pieData.map((entry, idx) => (
                         <Cell key={idx} fill={colors[idx % colors.length]} />
                       ))}
