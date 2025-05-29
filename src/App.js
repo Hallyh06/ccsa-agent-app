@@ -3,11 +3,18 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Dashboard from './screens/Dashboard';
 import Login from './screens/Login';
 import FarmersList from './screens/FarmersList';
+import FarmersListTable from './screens/FarmersListTable'; 
 import RegisterFarmer from './screens/RegisterFarmer';
 import UserRegisteration from './screens/UserRegistration';
 import ForgetPassword from './screens/ForgetPassword';
 import FarmerDetail from './screens/FarmerDetail';
-import './App.css';
+import OneFarmerDetail from './screens/OneFarmerDetail';
+import EditFarmer from './screens/EditFarmer';
+import FarmerListByState from "./screens/FarmerListByState";
+import EditFarmerFromState from "./screens/EditFarmerFromState";
+import FarmersByGender from "./screens/FarmersByGender";
+import FarmersByOwnership from './screens/FarmersByOwnership';
+//import './App.css';
 
 
 const Home = () => (
@@ -28,9 +35,18 @@ const App = () => {
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<RegisterFarmer />} />
         <Route path="/Farmers" element={<FarmersList />} />
+        <Route path="/FarmersList" element={<FarmersListTable />} />
         <Route path="/UserRegistration" element={<UserRegisteration />} />
         <Route path="/ForgetPassword" element={<ForgetPassword />} />
         <Route path="/FarmerDetail/:id" element={<FarmerDetail />} />
+        <Route path="/one-FarmerDetail/:id" element={<OneFarmerDetail />} />
+        <Route path="/edit-farmer/:id" element={<EditFarmer />} />
+        <Route path="/farmers-by-state/:stateName" element={<FarmerListByState />} />
+        <Route path="/edit-farmerFromState/:id" element={<EditFarmerFromState />} />
+        <Route path="/farmers-by-gender/:gender" element={<FarmersByGender />} />
+        <Route path="/farmers-by-ownership/:ownershipType" element={<FarmersByOwnership />} />
+
+
       </Routes>
     </Router>
   );
