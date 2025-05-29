@@ -154,9 +154,6 @@ const RegisterFarmer = () => {
               <i className="fas fa-location-arrow"></i> Get Farm Coordinates
             </button>
           </div>
-
-
-
           </div>
           <button type="submit" className="submit-btn">Register Farmer</button>
         </form>

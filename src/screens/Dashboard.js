@@ -10,6 +10,7 @@ import logo from "../cosmologo.png";  // Ensure you have the logo image in the a
 import '../styles/Dashboard.css';  // Add this line to import the CSS
 
 
+
 const Dashboard = () => {
   const [totalFarmers, setTotalFarmers] = useState(0);
   const [farmersByState, setFarmersByState] = useState({});
