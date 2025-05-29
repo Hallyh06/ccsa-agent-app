@@ -1,22 +1,43 @@
 import React, { useEffect, useState } from "react";
-import { collection, onSnapshot, query, where, doc, deleteDoc } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  query,
+  where,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 import { firestore } from "../firebase";
+import { getAuth, signOut } from "firebase/auth";
 import { useParams, useNavigate } from "react-router-dom";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import {
+  FaBars,
+  FaUserPlus,
+  FaList,
+  FaSearch,
+  FaFileAlt,
+  FaSignOutAlt,
+} from "react-icons/fa";
 
 const FarmerListByState = () => {
   const { stateName } = useParams();
   const [farmers, setFarmers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const auth = getAuth();
 
   useEffect(() => {
-    const q = query(collection(firestore, "farmers"), where("state", "==", stateName));
+    const q = query(
+      collection(firestore, "farmers"),
+      where("state", "==", stateName)
+    );
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const list = snapshot.docs.map((doc) => ({
         id: doc.id,
-        ...doc.data()
+        ...doc.data(),
       }));
       setFarmers(list);
     });
@@ -37,7 +58,12 @@ const FarmerListByState = () => {
   };
 
   const handleEdit = (id) => {
-    navigate(`/edit-farmerFromState/${id}`); // Make sure this route exists
+    navigate(`/edit-farmerFromState/${id}`);
+  };
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    navigate("/login");
   };
 
   const exportPDF = () => {
@@ -54,7 +80,7 @@ const FarmerListByState = () => {
         `${farmer.firstname} ${farmer.lastname}`,
         farmer.gender,
         farmer.phone,
-        farmer.primaryCrop
+        farmer.primaryCrop,
       ]);
     });
 
@@ -68,13 +94,43 @@ const FarmerListByState = () => {
   };
 
   const filteredFarmers = farmers.filter((farmer) =>
-    `${farmer.firstname} ${farmer.lastname}`.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    `${farmer.firstname} ${farmer.lastname}`
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase()) ||
     (farmer.phone || "").includes(searchTerm) ||
     (farmer.primaryCrop || "").toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <div className="container">
+      {/* Menu Toggle */}
+      <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+        <FaBars />
+      </div>
+
+      {/* Sidebar */}
+      <div className={`sidebar ${menuOpen ? "open" : ""}`}>
+        <div className="sidebar-header">Menu</div>
+        <nav className="sidebar-nav">
+          <button onClick={() => { navigate("/register-farmer"); setMenuOpen(false); }}>
+            <FaUserPlus /> Register Farmer
+          </button>
+          <button onClick={() => { navigate("/farmer-list"); setMenuOpen(false); }}>
+            <FaList /> Farmer List
+          </button>
+          <button onClick={() => { navigate("/search-farmer"); setMenuOpen(false); }}>
+            <FaSearch /> Search Farmers
+          </button>
+          <button onClick={() => { navigate("/generate-certificate"); setMenuOpen(false); }}>
+            <FaFileAlt /> Generate Certificate
+          </button>
+          <button onClick={handleLogout}>
+            <FaSignOutAlt /> Logout
+          </button>
+        </nav>
+      </div>
+
+
       <h2>Farmers in {stateName}</h2>
 
       <div className="top-controls">
@@ -85,11 +141,11 @@ const FarmerListByState = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-
         <button className="export-btn" onClick={exportPDF}>
           Export PDF
         </button>
       </div>
+
 
       <div className="table-container">
         <table className="farmer-table">
@@ -130,29 +186,87 @@ const FarmerListByState = () => {
         </table>
       </div>
 
+
+      
       <style>{`
         .container {
-          max-width: 1100px;
-          margin: 40px auto;
+  width: 100vw;
+  height: 100vh;
+  padding: 10px 20px;
+  margin: 0;
+  background: #ffffff;
+  border-radius: 0;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+        .menu-toggle {
+          font-size: 24px;
+          cursor: pointer;
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          z-index: 10;
+        }
+
+        .sidebar {
+          position: fixed;
+          top: 0;
+          left: -250px;
+          width: 250px;
+          height: 100vh;
+          background-color: #1e3a8a;
+          color: white;
           padding: 20px;
-          background: #ffffff;
-          border-radius: 8px;
-          box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+          transition: left 0.3s ease-in-out;
+          z-index: 9;
         }
 
-        h2 {
-          text-align: center;
-          color: #1e3a8a;
+        .sidebar.open {
+          left: 0;
+        }
+
+        .sidebar-header {
+          font-size: 20px;
+          font-weight: bold;
           margin-bottom: 20px;
         }
 
-        .top-controls {
-          display: flex;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          gap: 10px;
-          margin-bottom: 20px;
+        .sidebar-nav button {
+          display: block;
+          width: 100%;
+          background: none;
+          border: none;
+          color: white;
+          padding: 12px;
+          font-size: 16px;
+          text-align: left;
+          cursor: pointer;
+          margin-bottom: 10px;
         }
+
+        .sidebar-nav button:hover {
+          background-color: #2e4cc7;
+          border-radius: 6px;
+        }
+
+       h2 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #1e3a8a;
+}
+
+
+       .top-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
 
         .search-input {
           flex: 1;
@@ -178,13 +292,16 @@ const FarmerListByState = () => {
         }
 
         .table-container {
-          overflow-x: auto;
-        }
+  flex: 1;
+  overflow-x: auto;
+}
 
-        .farmer-table {
-          width: 100%;
-          border-collapse: collapse;
-        }
+
+       .farmer-table {
+  width: 100%;
+  min-width: 1000px;
+  border-collapse: collapse;
+}
 
         .farmer-table th, .farmer-table td {
           padding: 12px;
@@ -232,17 +349,13 @@ const FarmerListByState = () => {
           background-color: #b91c1c;
         }
 
-        @media (max-width: 600px) {
-          .search-input {
-            font-size: 14px;
+        @media (max-width: 768px) {
+          .top-controls {
+            flex-direction: column;
           }
 
-          .farmer-table th, .farmer-table td {
-            font-size: 14px;
-          }
-
-          .export-btn {
-            padding: 10px 16px;
+          .sidebar {
+            width: 80%;
           }
         }
       `}</style>
