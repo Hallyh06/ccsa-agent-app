@@ -24,7 +24,6 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 
-
 const Dashboard = () => {
   const [totalFarmers, setTotalFarmers] = useState(0);
   const [farmersByState, setFarmersByState] = useState({});
