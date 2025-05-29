@@ -95,7 +95,7 @@ const Dashboard = () => {
       {/* Main Content */}
       <div className="main-content">
         <header className="header">
-          <h1>Dashboard</h1>
+          <h1>Dashboard </h1>
           <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
             <FaBars size={20} />
           </button>
