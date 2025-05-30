@@ -85,7 +85,7 @@ const Dashboard = () => {
         <div className="sidebar-header">Menu</div>
         <nav className="sidebar-nav">
           <button onClick={() => {navigate("/register-farmer"); setMenuOpen(false);}}><FaUserPlus /> Register Farmer</button>
-          <button onClick={() => {navigate("/farmer-list"); setMenuOpen(false);}}><FaList /> Farmer List</button>
+          <button onClick={() => {navigate("/FarmersList"); setMenuOpen(false);}}><FaList /> Farmer List</button>
           <button onClick={() => {navigate("/search-farmer"); setMenuOpen(false);}}><FaSearch /> Search Farmers</button>
           <button onClick={() => {navigate("/generate-certificate"); setMenuOpen(false);}}><FaFileAlt /> Generate Certificate</button>
           <button onClick={handleLogout}><FaSignOutAlt /> Logout</button>

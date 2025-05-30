@@ -14,6 +14,9 @@ import FarmerListByState from "./screens/FarmerListByState";
 import EditFarmerFromState from "./screens/EditFarmerFromState";
 import FarmersByGender from "./screens/FarmersByGender";
 import FarmersByOwnership from './screens/FarmersByOwnership';
+
+import SearchFarmers from "./screens/SearchFarmers";
+import GenerateReport from "./screens/GenerateReport";
 //import './App.css';
 
 
@@ -45,6 +48,9 @@ const App = () => {
         <Route path="/edit-farmerFromState/:id" element={<EditFarmerFromState />} />
         <Route path="/farmers-by-gender/:gender" element={<FarmersByGender />} />
         <Route path="/farmers-by-ownership/:ownershipType" element={<FarmersByOwnership />} />
+
+        <Route path="/search-farmer" element={<SearchFarmers />} />
+        <Route path="/generate-certificate" element={<GenerateReport />} />
 
 
       </Routes>
